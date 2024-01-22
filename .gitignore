@@ -1,0 +1,6 @@
+*.svn*
+*.DS_Store*
+exclude.lst
+build/
+dist/
+

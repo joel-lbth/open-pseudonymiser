@@ -34,7 +34,9 @@
 
 package OpenPseudonymiser;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+// only line changed from original 2012 codebase to use newer Base64 class
+// import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import java.util.Base64;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -98,8 +100,8 @@ public class Crypto {
     
     private static String ReadEncryptedMessageUsingPublicKey(byte[] encryptedMessage) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException
     {
-        byte[] modulusBytes = Base64.decode("kcVhdr4DaGLAE2BUEPQSYTJ8JRw9NGsms45r2CEYKcElP4BUGEQnN9R4A8CMM1YZCqu5VbXvPoLZ9i/G8AL6g5YuD7MRTI60Xf930yHjCRNX2NiYX/FrKZrA6+T/GHoh9LjuZXBX75kwj53/8yP4uppW5pWRi/diDmPNrH4qnxk=");
-        byte[] exponentBytes = Base64.decode("AQAB");
+        byte[] modulusBytes = Base64.getDecoder().decode("kcVhdr4DaGLAE2BUEPQSYTJ8JRw9NGsms45r2CEYKcElP4BUGEQnN9R4A8CMM1YZCqu5VbXvPoLZ9i/G8AL6g5YuD7MRTI60Xf930yHjCRNX2NiYX/FrKZrA6+T/GHoh9LjuZXBX75kwj53/8yP4uppW5pWRi/diDmPNrH4qnxk=");
+        byte[] exponentBytes = Base64.getDecoder().decode("AQAB");
 
         BigInteger modulus = new BigInteger(1, modulusBytes );
         BigInteger exponent = new BigInteger(1, exponentBytes);
