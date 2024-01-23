@@ -17,7 +17,7 @@ if __name__ == "__main__":
     Crypto = autoclass("OpenPseudonymiser.Crypto")
     crypto = Crypto()
 
-    # read double encrypted file in as salt
+    # encrypt salt for extra security
     file_path = "./mackerel.EncryptedSalt"
     File = autoclass("java.io.File")
     file = File(file_path)
