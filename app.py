@@ -6,8 +6,10 @@ if __name__ == "__main__":
     # pip install pyjnius
     import jnius_config
 
+    # note - OpenPseudonymiserCryptoLib.jar should be in the dist dir of the project
+    # note - you will need to have built (or downloaded) it there
     file_path = os.path.join(
-        Path(__file__).parent.absolute(), "java-lib", "*"
+        Path(__file__).parent.absolute(), "dist", "*"
     )
     jnius_config.set_classpath(".", file_path)
     from jnius import autoclass
