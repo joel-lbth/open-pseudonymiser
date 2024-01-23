@@ -7,6 +7,9 @@ Original codebase and desktop software available at https://www.openpseudonymise
 ## Dependencies
 
 Java v1.5 or higher, and Ant for building.
+
+### Java with scoop.sh (windows)
+
 ```
 scoop bucket add java
 scoop install java/zulu-jdk
@@ -15,21 +18,17 @@ scoop install main/ant
 
 ## Build
 
-Compile and test by running:
-  `ant`
-at the command prompt.
+Compile and test by running: `ant` at the command prompt.
 
 ## Docs
 
 ### Terms Used 
 
-**Input:** A concatenation of the fields the user has selected to use in
-the creation of the Digest (e.g. NHSNum + DOB)
+**Input:** A concatenation of the fields the user has selected to use in the creation of the Digest (e.g. NHSNum + DOB)
 
 **Salt:** Extra characters added to the input
 
-**Digest:** The long string that comes out of the cryptographic hash
-function
+**Digest:** The long string that comes out of the cryptographic hash function
 
 ### Digest Creation
 
@@ -38,8 +37,8 @@ The digest is a SHA-2 (SHA256 variant) hash of the concatenated columns with the
 e.g. if the columns NHSNumber and DOB were selected with the salt "mackerel" then the digest creation would follow the steps:
 
 1.   "29.11.2011" + "9434765919" + "mackerel"
-2.   concatenated to: "29.11.20119434765919mackerel"
-3.   run through SHA256
+2.   Concatenated to: "29.11.20119434765919mackerel"
+3.   Run through SHA256
 4.   The digest = "5dfc32ba81ea3e016333687111ae2f63d97dad05adf92c61bf06438a08d8bc56"
 
 Note that all the inputs are treated as strings, different formats for the DOB (slashes rather than dots), 2 rather than 4 digits will change the digest. 
@@ -60,13 +59,7 @@ This is a very important point and means OpenPseudonymiser should not be used to
 
 ### Using the JAR
 
-This section describes how to use the JAR.
-
-#### JAR details and dependencies
-
-The JAR is called: OpenPseudonymiser.CryptoLib.jar
-
-The jar is built to be compatible with Java 1.5 and later.
+The JAR is called: `OpenPseudonymiser.CryptoLib.jar` and is built to be compatible with Java 1.5 and later.
 
 #### Using the JAR in your application
 
@@ -84,9 +77,10 @@ Crypto crypto = new Crypto();
 
 The following code is an example of how to call the CryptoLib
 
-boolean success = false;
 
 ```java
+boolean success = false;
+
 Crypto crypto = new Crypto();
 
 // set the salt to a plain text word/phrase
@@ -142,17 +136,21 @@ Instead of calling:
 String salt = "mackerel";
 
 crypto.SetPlainTextSalt(salt);
+```
 
 Do this instead:
 
+```java
 File encryptedSalt = new File("path/to/local_copy_of.EncryptedSalt");
 
 crypto.SetEncryptedSalt(encryptedSalt);
+```
 
 Replacing the location of your encrypted salt file as appropriate
 
 If need to store the encrypted salt in a database or some other non-filesystem location, you can do this:
 
+```java
 byte[] encryptedSaltData = getMyEncryptedSaltBytes();
 
 crypto.SetEncryptedSalt(encryptedSaltData);
@@ -171,7 +169,7 @@ Organisations who wish to make use of the Open Pseudonymiser technology have ful
 Please see the following document entitled "Anonymisation: managing data protection risk code of practice" (https://ico.org.uk/media/1061/anonymisation-code.pdf)
 The case study on page 79 has an example of using the cryptographic hash technique.
 
-The JAVA libraries are released under the GNU Lesser Public License 3 (http://www.gnu.org/licenses/lgpl.html)
+The java libraries are released under the GNU Lesser Public License 3 (http://www.gnu.org/licenses/lgpl.html)
 
 The University of Nottingham thanks QResearch (www.qresearch.org) for contributing to the cost of developing this software.
 
@@ -181,4 +179,3 @@ OpenPseudonymiser makes use of the following Open Source libraries:
 - RSAEncryption Class Version 1.00 which is Copyright (c) 2009 Dudi Bedner (http://www.codeproject.com/KB/security/PrivateEncryption.aspx)
 - BigInteger Class Version 1.03 which is Copyright (c) 2002 Chew Keong TAN (http://www.codeproject.com/KB/cs/biginteger.aspx)
 - The NHSNumber validation code is based on an Open Source work by Peter Fisher. The original NHSNumber validation code can be found on here on GitHub (https://github.com/pfwd/NHSNumber-Validation)
-
