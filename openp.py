@@ -51,10 +51,12 @@ def test_crypto(crypto):
 if __name__ == "__main__":
 
   # set crypto lib
-  # this is probably better as it means relative to the file
-  # sometimes however __file__ disappears, such as in interactive python
+  # when a module is loaded from a file in Python, 
+  # ... __file__ is set to its absolute path. 
+  # ... you can then use that with other functions 
+  # ... to find the directory that the file is located in.
   jar_path = os.path.join(Path(__file__).parent.absolute(), "dist", "*")
-  # this works, but only if the file is triggered from the right location
+  # this works, but only if the current working dir is the absolute path of this file
   # jar_path = os.'path.join(Path(os.getcwd()).absolute(), "dist", "*")
 
   set_java_lib(jar_path)
