@@ -4,6 +4,8 @@ A public-key cryptography library useful for de-identifying datasets.
 
 Original codebase and desktop software available at https://www.openpseudonymiser.org
 
+![openpseudonymiser-flow.png](openpseudonymiser-flow.png)
+
 ## Dependencies
 
 Java v1.5 or higher, and Ant for building.
